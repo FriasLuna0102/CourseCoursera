@@ -1,0 +1,54 @@
+/* estilos.css */
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    align-items: center; /* Centramos los elementos horizontalmente */
+    justify-content: center; /* Centramos los elementos verticalmente */
+    height: 100vh; /* Altura completa de la ventana del navegador */
+}
+
+
+/* Estilos para escritorio */
+@media (min-width: 992px) {
+    section {
+        width: calc(33.33% - 20px); /* Restamos el margen del ancho */
+        float: left; /* Las secciones se alinean en una fila */
+        margin: 10px; /* Espaciado entre secciones */
+        padding: 20px; /* Espaciado entre el texto y los bordes de la sección */
+        box-sizing: border-box; /* El relleno y el borde se incluyen en el ancho y la altura */
+        border: 1px solid black; /* Borde negro de 1px */
+        background-color: #f0f0f0; /* Color de fondo de la sección */
+        position: relative; /* Establecer posición relativa para que los títulos estén posicionados correctamente */
+    }
+    section h2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px; /* Espaciado entre el título y los bordes de la región del título */
+        background-color: #d0d0d0; /* Color de fondo de la región del título */
+        color: black; /* Color del texto */
+        margin: 0; /* Eliminar margen predeterminado */
+        border: 1px solid black; /* Borde negro de 1px */
+
+    }
+}
+
+/* Estilos para tableta */
+@media (min-width: 768px) and (max-width: 991px) {
+    section {
+        width: calc(50% - 20px); /* Restamos el margen del ancho */
+        float: left; /* Las secciones se alinean en una fila */
+    }
+    section:last-child {
+        width: calc(100% - 20px); /* Restamos el margen del ancho */
+        float: none; /* La sección se coloca en una nueva línea */
+    }
+}
+
+/* Estilos para móvil */
+@media (max-width: 767px) {
+    section {
+        width: calc(100% - 20px); /* Restamos el margen del ancho */
+    }
+}
