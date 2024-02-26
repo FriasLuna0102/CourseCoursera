@@ -15,11 +15,11 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
     var homeHtmlUrl = "snippets/home-snippet.html";
     var allCategoriesUrl =
-        "https://davids-restaurant.herokuapp.com/categories.json";
+        "https://coursera-jhu-default-rtdb.firebaseio.com/categories.json";
     var categoriesTitleHtml = "snippets/categories-title-snippet.html";
     var categoryHtml = "snippets/category-snippet.html";
     var menuItemsUrl =
-        "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
+        "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/";
     var menuItemsTitleHtml = "snippets/menu-items-title.html";
     var menuItemHtml = "snippets/menu-item.html";
 
@@ -84,7 +84,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
         $ajaxUtils.sendGetRequest(
             allCategoriesUrl,
             buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
-            true); // Explicitely setting the flag to get JSON from server processed into an object literal
+            true); // Explicitly setting the flag to get JSON from server processed into an object literal
     });
 // *** finish **
 
@@ -101,8 +101,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
                 // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
                 // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
                 // variable's name implies it expects.
-                // var chosenCategoryShortName = ....
-                var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
+                var chosenCategoryShortName = chooseRandomCategory(categories).short_name
 
 
                 // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
@@ -117,15 +116,17 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
                 // it into the home html snippet.
                 //
                 // var homeHtmlToInsertIntoMainPage = ....
-                chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
-                var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", chosenCategoryShortName);
+                var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", `'${chosenCategoryShortName}'`);
 
 
-                // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
+
+                // TODO: STEP 4: Insert the produced HTML in STEP 3 into the main page
                 // Use the existing insertHtml function for that purpose. Look through this code for an example
                 // of how to do that.
                 // ....
-                insertHtml('#main-content', homeHtmlToInsertIntoMainPage);
+                // Inside buildAndShowHomeHTML function, continued from Step 3
+                insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
+
 
             },
             false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
@@ -156,7 +157,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
     dc.loadMenuItems = function (categoryShort) {
         showLoading("#main-content");
         $ajaxUtils.sendGetRequest(
-            menuItemsUrl + categoryShort,
+            menuItemsUrl + categoryShort + ".json",
             buildAndShowMenuItemsHTML);
     };
 
